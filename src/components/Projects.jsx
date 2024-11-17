@@ -3,7 +3,6 @@ import { assets, projectsData } from '../assets/assets'
 
 const Projects = () => {
 
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(1);
 
@@ -15,6 +14,8 @@ const Projects = () => {
     // 如果prevIndex == 0的时候 我们就要把Index 拉去projectData长度-1的位置
     setCurrentIndex((prevIndex) => prevIndex === 0 ? projectsData.length - 1 : prevIndex-1)
   }
+
+  setInterval(() => {nextProject},10000)
 
   useEffect(() => { 
     const updateCardsToShow = () => {

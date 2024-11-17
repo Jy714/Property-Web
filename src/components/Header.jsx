@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import { motion } from "motion/react"
+import { assets } from '../assets/assets'
 
 const Header = () => {
+
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => { 
+    window.addEventListener("scroll", () => { 
+      window.scrollY > 500 ? setVisible(true) : setVisible(false);
+    })
+  },[])
+
   return (
     <div className='min-h-screen mb-4 bg-cover bg-center flex items-center w-full overflow-hidden' style={{backgroundImage: "url('/header_img.png')"}} id='Header'>
       <Navbar />
@@ -19,6 +29,12 @@ const Header = () => {
           <a href="#About" className='bg-blue-500 px-8 py-3 rounded'>Contact us</a>
         </div>
       </motion.div>
+
+      <div className={`${visible ? "opacity-100" : "opacity-0"} fixed right-8 bottom-6 bg-blue-600 rounded p-1 transition-all duration-300 z-10`}>
+        <a href="#Header">
+          <img src={assets.arrow_upward} width={30} />
+        </a>
+      </div>
 
     </div>
   )
